@@ -1,13 +1,10 @@
-import { Route, Redirect } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
+import React from "react";
+import { Route, useNavigate } from "react-router-dom";
+import { LoginContext } from "../../contexts/LoginContext";
 
 export const MainRoute = (props: any) => {
-    const [cookies] = useCookies(['access-token']);
-    let isLoggedIn = false;
+  const { isLoggedIn }: any = React.useContext(LoginContext);
+  const navigate = useNavigate();
 
-     if (cookies['access-token'] !== undefined) {
-        isLoggedIn = true;
-    }
-
-    return isLoggedIn ? <Route {...props} /> : <Redirect to="/login" />
+  return isLoggedIn ? <Route {...props} /> : () => navigate("/login");
 };

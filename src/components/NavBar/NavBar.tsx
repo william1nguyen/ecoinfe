@@ -17,7 +17,9 @@ import CatchingPokemonIcon from "@mui/icons-material/CatchingPokemon";
 import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
 import AppRegistrationRounded from "@mui/icons-material/AppRegistrationRounded";
 import { useCookies } from "react-cookie";
-import { OrderContext } from "../../context/OrderContext";
+import { OrderContext } from "../../contexts/OrderContext";
+import { useNavigate } from "react-router-dom";
+import { LoginContext } from "../../contexts/LoginContext";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -61,18 +63,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export const NavBar = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [cookies, , removeCookie] = useCookies(["access-token"]);
-  const [isLoggedIn, setIsLoggedIn] = React.useState<null | Boolean>(false);
+  const [, setCookie, removeCookie] = useCookies([
+    "access-token",
+    "isLoggedIn",
+  ]);
+  const { isLoggedIn, setIsLoggedIn }: any = React.useContext(LoginContext);
   const { orderItems }: any = React.useContext(OrderContext);
   const [orderItemNumber, setOrderItemNumber]: any = React.useState<
     number | null
   >(0);
-
-  React.useEffect(() => {
-    if (cookies["access-token"]) {
-      setIsLoggedIn(true);
-    }
-  }, []);
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     setOrderItemNumber(orderItems?.length);
@@ -90,7 +90,9 @@ export const NavBar = () => {
 
   const handleLogout = () => {
     removeCookie("access-token");
-    window.location.href = "/login";
+    setCookie("isLoggedIn", false, { path: "/", secure: true });
+    setIsLoggedIn(false);
+    navigate("/login");
     setAnchorEl(null);
   };
 
@@ -113,7 +115,7 @@ export const NavBar = () => {
     >
       <MenuItem
         onClick={() => {
-          window.location.href = "/settings";
+          navigate("/settings");
           setAnchorEl(null);
         }}
       >
@@ -129,7 +131,7 @@ export const NavBar = () => {
         size="large"
         aria-label="show n new orders"
         color="inherit"
-        onClick={() => (window.location.href = "/orders/me")}
+        onClick={() => navigate("/orders/me")}
       >
         <Badge badgeContent={orderItemNumber} color="error">
           <ShoppingCartIcon />
@@ -155,7 +157,7 @@ export const NavBar = () => {
         size="small"
         color="inherit"
         aria-label="Login"
-        onClick={() => (window.location.href = "/login")}
+        onClick={() => navigate("/login")}
       >
         <LoginRoundedIcon />
         Login
@@ -164,7 +166,7 @@ export const NavBar = () => {
         size="small"
         color="inherit"
         aria-label="Sign up"
-        onClick={() => (window.location.href = "/signup")}
+        onClick={() => navigate("/signup")}
       >
         <AppRegistrationRounded />
         Sign up
@@ -195,7 +197,7 @@ export const NavBar = () => {
               size="large"
               color="inherit"
               aria-label="Title"
-              onClick={() => (window.location.href = "/")}
+              onClick={() => navigate("/")}
             >
               <CatchingPokemonIcon />
               ECOM
