@@ -1,76 +1,75 @@
-import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
-import Badge from '@mui/material/Badge';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
-import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
-import AppRegistrationRounded from '@mui/icons-material/AppRegistrationRounded';
-import { useCookies } from 'react-cookie';
-import { OrderContext } from '../../context/OrderContext';
+import * as React from "react";
+import { styled, alpha } from "@mui/material/styles";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import InputBase from "@mui/material/InputBase";
+import Badge from "@mui/material/Badge";
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import SearchIcon from "@mui/icons-material/Search";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import CatchingPokemonIcon from "@mui/icons-material/CatchingPokemon";
+import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
+import AppRegistrationRounded from "@mui/icons-material/AppRegistrationRounded";
+import { useCookies } from "react-cookie";
+import { OrderContext } from "../../context/OrderContext";
 
-
-
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
+const Search = styled("div")(({ theme }) => ({
+  position: "relative",
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
+  "&:hover": {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
   marginRight: theme.spacing(2),
   marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
+  width: "100%",
+  [theme.breakpoints.up("sm")]: {
     marginLeft: theme.spacing(3),
-    width: 'auto',
+    width: "auto",
   },
 }));
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
+const SearchIconWrapper = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center'
+  height: "100%",
+  position: "absolute",
+  pointerEvents: "none",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
+  color: "inherit",
+  "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      width: "20ch",
     },
   },
 }));
 
 export const NavBar = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [cookies, ,removeCookie] = useCookies(['access-token']);
+  const [cookies, , removeCookie] = useCookies(["access-token"]);
   const [isLoggedIn, setIsLoggedIn] = React.useState<null | Boolean>(false);
-  const { orderItems, }: any = React.useContext(OrderContext);
-  const [ orderItemNumber, setOrderItemNumber ]: any = React.useState<number | null>(0);
+  const { orderItems }: any = React.useContext(OrderContext);
+  const [orderItemNumber, setOrderItemNumber]: any = React.useState<
+    number | null
+  >(0);
 
   React.useEffect(() => {
-    if (cookies['access-token']) {
+    if (cookies["access-token"]) {
       setIsLoggedIn(true);
     }
   }, []);
@@ -90,49 +89,50 @@ export const NavBar = () => {
   };
 
   const handleLogout = () => {
-    removeCookie('access-token');
+    removeCookie("access-token");
     window.location.href = "/login";
     setAnchorEl(null);
-  }
+  };
 
-  const menuId = 'primary-search-account-menu';
+  const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
       anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
+        vertical: "top",
+        horizontal: "right",
       }}
       id={menuId}
       keepMounted
       transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
+        vertical: "top",
+        horizontal: "right",
       }}
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      <MenuItem onClick={() => { window.location.href = "/settings"; setAnchorEl(null);  }}>Setting</MenuItem>
+      <MenuItem
+        onClick={() => {
+          window.location.href = "/settings";
+          setAnchorEl(null);
+        }}
+      >
+        Setting
+      </MenuItem>
       <MenuItem onClick={handleLogout}>Log out</MenuItem>
     </Menu>
   );
 
   const renderIconWithUserLoggedIn = (
-    <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-      <IconButton size="large" aria-label="show n new orders" color="inherit" onClick={() => window.location.href = "/orders/me"}>
-        <Badge badgeContent={orderItemNumber} color="error">
-          <ShoppingCartIcon />
-        </Badge>
-      </IconButton>
+    <Box sx={{ display: { xs: "none", md: "flex" } }}>
       <IconButton
         size="large"
-        aria-label="show 17 new notifications"
+        aria-label="show n new orders"
         color="inherit"
+        onClick={() => (window.location.href = "/orders/me")}
       >
-        <Badge badgeContent={17} color="error">
-          <NotificationsIcon />
+        <Badge badgeContent={orderItemNumber} color="error">
+          <ShoppingCartIcon />
         </Badge>
       </IconButton>
       <IconButton
@@ -146,22 +146,32 @@ export const NavBar = () => {
       >
         <AccountCircle />
       </IconButton>
-    </Box> 
+    </Box>
   );
 
   const renderIconWithoutUserLoggedIn = (
-    <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-      <IconButton size="small" color="inherit" aria-label="Login" onClick={() => window.location.href = "/login"}>
+    <Box sx={{ display: { xs: "none", md: "flex" } }}>
+      <IconButton
+        size="small"
+        color="inherit"
+        aria-label="Login"
+        onClick={() => (window.location.href = "/login")}
+      >
         <LoginRoundedIcon />
         Login
       </IconButton>
-      <IconButton size="small" color="inherit" aria-label="Sign up" onClick={() => window.location.href = "/signup"}>
+      <IconButton
+        size="small"
+        color="inherit"
+        aria-label="Sign up"
+        onClick={() => (window.location.href = "/signup")}
+      >
         <AppRegistrationRounded />
         Sign up
       </IconButton>
     </Box>
   );
-      
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -179,10 +189,14 @@ export const NavBar = () => {
             variant="h6"
             noWrap
             component="div"
-            sx={{ display: { xs: 'none', sm: 'block' } }}
+            sx={{ display: { xs: "none", sm: "block" } }}
           >
-
-            <IconButton size="large" color="inherit" aria-label="Title" onClick={() => window.location.href = "/"}>
+            <IconButton
+              size="large"
+              color="inherit"
+              aria-label="Title"
+              onClick={() => (window.location.href = "/")}
+            >
               <CatchingPokemonIcon />
               ECOM
             </IconButton>
@@ -193,14 +207,16 @@ export const NavBar = () => {
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
+              inputProps={{ "aria-label": "search" }}
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
-          {(isLoggedIn) ? renderIconWithUserLoggedIn : renderIconWithoutUserLoggedIn}
+          {isLoggedIn
+            ? renderIconWithUserLoggedIn
+            : renderIconWithoutUserLoggedIn}
         </Toolbar>
       </AppBar>
       {renderMenu}
     </Box>
   );
-}
+};
