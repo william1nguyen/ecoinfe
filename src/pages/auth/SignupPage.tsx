@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import { UserSignupInfo } from "../../type";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export const SignupPage = () => {
   const [isSignedUp, setIsSignedUp] = useState(false);
@@ -27,6 +28,7 @@ export const SignupPage = () => {
 
     if (response.status === 201) {
       setIsSignedUp(true);
+      toast.success("Successfully Registered!");
     }
   };
 

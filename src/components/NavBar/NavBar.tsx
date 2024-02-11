@@ -20,6 +20,7 @@ import { useCookies } from "react-cookie";
 import { OrderContext } from "../../contexts/OrderContext";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../../contexts/LoginContext";
+import toast from "react-hot-toast";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -76,7 +77,7 @@ export const NavBar = () => {
 
   React.useEffect(() => {
     setOrderItemNumber(orderItems?.length);
-  }, [orderItems]);
+  }, [JSON.stringify(orderItems)]);
 
   const isMenuOpen = Boolean(anchorEl);
 
@@ -92,6 +93,7 @@ export const NavBar = () => {
     removeCookie("access-token");
     setCookie("isLoggedIn", false, { path: "/", secure: true });
     setIsLoggedIn(false);
+    toast.success("Logged Out!");
     navigate("/login");
     setAnchorEl(null);
   };

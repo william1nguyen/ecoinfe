@@ -21,6 +21,8 @@ export const ProductsView = () => {
       product,
     ]);
 
+    console.log("RUN FIRST", orderItems);
+
     try {
       const url = import.meta.env.VITE_BASE_URL + "/api/order-items";
       const headers = {

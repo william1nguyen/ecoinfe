@@ -36,7 +36,7 @@ export const TablePrice = () => {
     setInvoiceSubtotal(tempInvoiceSubtotal);
     setInvoiceTaxes(tempInvoiceTaxes);
     setInvoiceTotal(tempInvoiceTotal);
-  }, [orderItems]);
+  }, [JSON.stringify(orderItems)]);
 
   const handleChangeQuantity = async (
     _event: any,

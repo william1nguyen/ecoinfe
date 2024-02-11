@@ -1,15 +1,14 @@
 import { CircularProgress } from "@mui/material";
 import { useEffect, useState } from "react";
-import { Route } from 'react-router-dom';
 
-export const LoadingRoute = (props: any) => {
-    const [isLoading, setIsLoading] = useState(true);
+export const LoadingRoute = ({ element }: any) => {
+  const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-        setTimeout(() => {
-            setIsLoading(false);
-        }, 1500);
-    }, []);
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+  }, []);
 
-    return (isLoading) ? <CircularProgress /> : <Route {...props} />;
+  return isLoading ? <CircularProgress /> : <div>{element}</div>;
 };

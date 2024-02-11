@@ -29,7 +29,7 @@ export const OrderProvider = ({ children }: any) => {
     };
 
     getOrderItems();
-  }, [orderItems]);
+  }, [JSON.stringify(orderItems)]); // avoid reloading everytime because objects are always different.
 
   return (
     <OrderContext.Provider value={{ orderItems, setOrderItems }}>

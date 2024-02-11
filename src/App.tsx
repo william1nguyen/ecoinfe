@@ -34,11 +34,23 @@ const App = () => {
           <HideAppBar />
           <div style={{ padding: "2rem", margin: "0 auto" }}>
             <Routes>
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/signup" element={<SignupPage />} />
-              <Route path="/orders/me" element={<Cart />} />
-              <Route path="/settings" element={<Settings />} />
-              <Route path="/" element={<Store />} />
+              <Route
+                path="/login"
+                element={<LoadingRoute element={<LoginPage />} />}
+              />
+              <Route
+                path="/signup"
+                element={<LoadingRoute element={<SignupPage />} />}
+              />
+              <Route
+                path="/orders/me"
+                element={<LoadingRoute element={<Cart />} />}
+              />
+              <Route
+                path="/settings"
+                element={<LoadingRoute element={<Settings />} />}
+              />
+              <Route path="/" element={<LoadingRoute element={<Store />} />} />
             </Routes>
           </div>
         </OrderProvider>
