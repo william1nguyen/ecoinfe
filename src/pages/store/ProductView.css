@@ -1,0 +1,68 @@
+/* styles.css */
+
+.product-image {
+    width: 100%;
+    height: 500px;
+    -webkit-box-shadow: -1px -3px 5px -2px rgba(214, 214, 214, 1);
+    -moz-box-shadow: -1px -3px 5px -2px rgba(214, 214, 214, 1);
+    box-shadow: -1px -3px 5px -2px rgba(214, 214, 214, 1);
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    margin: 20px; /* Increase margin for more space around the card */
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    min-width: 300px; /* Adjust minimum width for responsiveness */
+    text-align: left;
+    gap: 100px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.image-container {
+    max-width: 100%; /* Image takes full width within the card */
+    overflow: hidden; /* Prevent image overflow */
+    border-radius: 8px;
+}
+
+.product-info {
+    flex: 1;
+    padding: 16px;
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+}
+
+.product-info h2 {
+    margin-bottom: 10px;
+}
+
+.product-info h3 {
+    margin-bottom: 10px;
+}
+
+.product-info p {
+    margin-bottom: 20px;
+}
+
+.button-container {
+    margin-top: auto; /* Push the button to the bottom */
+}
+
+/* Media query for responsiveness */
+@media (min-width: 600px) {
+    .product-card {
+        flex-direction: row; /* Switch to horizontal layout for larger screens */
+    }
+
+    .image-container {
+        max-width: 40%; /* Adjust the width of the image container */
+    }
+
+    .product-info {
+        flex: 1;
+        padding: 16px;
+    }
+}

@@ -13,6 +13,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Toaster } from "react-hot-toast";
 import { LoginProvider } from "./contexts/LoginContext";
+import { ProductView } from "./pages/store/ProductView";
 
 const App = () => {
   useEffect(() => {
@@ -51,6 +52,10 @@ const App = () => {
                 element={<LoadingRoute element={<Settings />} />}
               />
               <Route path="/" element={<LoadingRoute element={<Store />} />} />
+              <Route
+                path="/products/:productId"
+                element={<LoadingRoute element={<ProductView />} />}
+              />
             </Routes>
           </div>
         </OrderProvider>

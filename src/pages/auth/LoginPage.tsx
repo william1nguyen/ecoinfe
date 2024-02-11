@@ -34,6 +34,7 @@ export const LoginPage = () => {
       toast.success("Logged In!");
       setIsLoggedIn(true);
       navigate("/");
+      window.location.reload();
     }
   };
 
