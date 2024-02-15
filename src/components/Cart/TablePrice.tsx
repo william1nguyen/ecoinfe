@@ -32,7 +32,7 @@ export const TablePrice = () => {
       0
     );
     const tempInvoiceTaxes = tempInvoiceSubtotal * TAX_RATE;
-    const tempInvoiceTotal = tempInvoiceSubtotal - tempInvoiceTaxes;
+    const tempInvoiceTotal = tempInvoiceSubtotal + tempInvoiceTaxes;
     setInvoiceSubtotal(tempInvoiceSubtotal);
     setInvoiceTaxes(tempInvoiceTaxes);
     setInvoiceTotal(tempInvoiceTotal);
