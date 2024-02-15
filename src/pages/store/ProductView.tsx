@@ -13,7 +13,7 @@ export const ProductView = () => {
   const id = params.productId;
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
-  const [digital, setDigital] = useState(false);
+  const [, setDigital] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
   const [description, setDescription] = useState("");
   const [instock, setInStock] = useState(true);
@@ -57,13 +57,13 @@ export const ProductView = () => {
   useEffect(() => {
     const getProduct = async () => {
       const url = import.meta.env.VITE_BASE_URL + `/api/products/${id}`;
-      const headers = {
-        Authorization: "Bearer " + cookies["access-token"],
-      };
+      // const headers = {
+      //   Authorization: "Bearer " + cookies["access-token"],
+      // };
       const response: any = await axios({
         method: "GET",
         url: url,
-        headers: headers,
+        // headers: headers,
       });
       const product: any = response["data"]["product"];
       setProduct(product);

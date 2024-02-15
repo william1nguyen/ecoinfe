@@ -17,7 +17,7 @@ import { ProductView } from "./pages/store/ProductView";
 
 const App = () => {
   useEffect(() => {
-    document.title = "Ecom";
+    document.title = "ECOIN";
   }, []);
 
   return (
