@@ -202,7 +202,7 @@ export const NavBar = () => {
               onClick={() => navigate("/")}
             >
               <CatchingPokemonIcon />
-              ECOM
+              ECOIN
             </IconButton>
           </Typography>
           <Search>
