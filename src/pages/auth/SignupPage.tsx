@@ -20,15 +20,19 @@ export const SignupPage = () => {
       passwordConfirm: event.target.password_confirm.value,
     };
 
-    const response = await axios({
-      method: "POST",
-      url: url,
-      data: data,
-    });
+    try {
+      const response = await axios({
+        method: "POST",
+        url: url,
+        data: data,
+      });
 
-    if (response.status === 201) {
-      setIsSignedUp(true);
-      toast.success("Successfully Registered!");
+      if (response.status === 201) {
+        setIsSignedUp(true);
+        toast.success("Successfully Registered!");
+      }
+    } catch (error) {
+      toast.error("Something bad happend!");
     }
   };
 

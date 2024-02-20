@@ -21,20 +21,24 @@ export const LoginPage = () => {
       password: event.target.password.value,
     };
 
-    const response = await axios({
-      method: "POST",
-      url: url,
-      data: data,
-    });
+    try {
+      const response = await axios({
+        method: "POST",
+        url: url,
+        data: data,
+      });
 
-    if (response.status === 200) {
-      const { access_token } = response.data;
-      setCookie("access-token", access_token, { path: "/", secure: true });
-      setCookie("isLoggedIn", true, { path: "/", secure: true });
-      toast.success("Logged In!");
-      setIsLoggedIn(true);
-      navigate("/");
-      window.location.reload();
+      if (response.status === 200) {
+        const { access_token } = response.data;
+        setCookie("access-token", access_token, { path: "/", secure: true });
+        setCookie("isLoggedIn", true, { path: "/", secure: true });
+        toast.success("Logged In!");
+        setIsLoggedIn(true);
+        navigate("/");
+        window.location.reload();
+      }
+    } catch (error) {
+      toast.error("Your Email Or Password is Incorrect!");
     }
   };
 
