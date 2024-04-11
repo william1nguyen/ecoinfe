@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { OrderContext } from "../../contexts/OrderContext";
 import toast from "react-hot-toast";
 import { Product } from "../../type";
+import { truncate } from "../../utilities/truncate";
 import "./ProductView.css";
 
 export const ProductView = () => {
@@ -32,7 +33,7 @@ export const ProductView = () => {
     ]);
 
     try {
-      const url = import.meta.env.VITE_BASE_URL + "/api/order-items";
+      const url = import.meta.env.VITE_API_ROOT + "/api/order-items";
       const headers = {
         Authorization: "Bearer " + cookies["access-token"],
       };
@@ -47,7 +48,7 @@ export const ProductView = () => {
         data: data,
       });
 
-      toast.success(`Add ${product.name} To Cart!`);
+      toast.success(`Add ${truncate(product.name)} To Cart!`);
     } catch (error) {
       toast.error("Something Bad Happened!");
       console.error("Error fetching products:", error);
@@ -56,16 +57,14 @@ export const ProductView = () => {
 
   useEffect(() => {
     const getProduct = async () => {
-      const url = import.meta.env.VITE_BASE_URL + `/api/products/${id}`;
-      // const headers = {
-      //   Authorization: "Bearer " + cookies["access-token"],
-      // };
+      const url = import.meta.env.VITE_API_ROOT + `/api/products/${id}`;
       const response: any = await axios({
         method: "GET",
         url: url,
-        // headers: headers,
       });
+      
       const product: any = response["data"]["product"];
+
       setProduct(product);
       setName(product["name"]);
       setPrice(product["price"]);

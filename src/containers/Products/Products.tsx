@@ -6,6 +6,7 @@ import { Stack } from "@mui/material";
 import { Product } from "../../type";
 import { OrderContext } from "../../contexts/OrderContext";
 import { useCookies } from "react-cookie";
+import { truncate } from "../../utilities/truncate";
 import toast from "react-hot-toast";
 
 export const ProductsView = () => {
@@ -22,7 +23,7 @@ export const ProductsView = () => {
     ]);
 
     try {
-      const url = import.meta.env.VITE_BASE_URL + "/api/order-items";
+      const url = import.meta.env.VITE_API_ROOT + "/api/order-items";
       const headers = {
         Authorization: "Bearer " + cookies["access-token"],
       };
@@ -47,7 +48,7 @@ export const ProductsView = () => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const url = import.meta.env.VITE_BASE_URL + "/api/products";
+        const url = import.meta.env.VITE_API_ROOT + "/api/products";
         const response = await axios({
           method: "GET",
           url: url,
@@ -83,7 +84,7 @@ export const ProductsView = () => {
             />
             <br />
             <a href={`/products/${product.id}`}>
-              <strong>{product.name}</strong>
+              <strong>{truncate(product.name)}</strong>
             </a>
             <hr />
             <Stack direction="row" justifyContent="space-between">

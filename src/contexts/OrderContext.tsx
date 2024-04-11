@@ -12,7 +12,7 @@ export const OrderProvider = ({ children }: any) => {
   useEffect(() => {
     const getOrderItems = async () => {
       try {
-        const url = import.meta.env.VITE_BASE_URL + "/api/order-items";
+        const url = import.meta.env.VITE_API_ROOT + "/api/order-items";
         const headers = {
           Authorization: "Bearer " + cookies["access-token"],
         };

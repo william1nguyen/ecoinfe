@@ -36,7 +36,7 @@ export const Cart = () => {
 
   const handleClick = async () => {
     const url =
-      import.meta.env.VITE_BASE_URL + "/payment/create-checkout-session";
+      import.meta.env.VITE_API_ROOT + "/payment/create-checkout-session";
     const headers = {
       Authorization: "Bearer " + cookies["access-token"],
     };

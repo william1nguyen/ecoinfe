@@ -39,7 +39,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
   };
 
   const saveAndRemoveOrder = async () => {
-    const url = import.meta.env.VITE_BASE_URL + "/api/orders";
+    const url = import.meta.env.VITE_API_ROOT + "/api/orders";
     const headers = {
       Authorization: "Bearer " + cookies["access-token"],
     };

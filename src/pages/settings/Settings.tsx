@@ -32,7 +32,7 @@ export const Settings = () => {
 
   useEffect(() => {
     const getInitialData = async () => {
-      const url = import.meta.env.VITE_BASE_URL + "/api/info";
+      const url = import.meta.env.VITE_API_ROOT + "/api/info";
       const headers = {
         Authorization: "Bearer " + cookies["access-token"],
       };
@@ -68,7 +68,7 @@ export const Settings = () => {
 
   const hanleSubmit = async (event: any) => {
     event.preventDefault();
-    const url = import.meta.env.VITE_BASE_URL + "/api/info";
+    const url = import.meta.env.VITE_API_ROOT + "/api/info";
     const headers = {
       Authorization: "Bearer " + cookies["access-token"],
     };

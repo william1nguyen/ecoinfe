@@ -12,7 +12,7 @@ export const SignupPage = () => {
   const handleSubmit = async (event: any) => {
     event.preventDefault();
 
-    const url = import.meta.env.VITE_BASE_URL + "/users/signup";
+    const url = import.meta.env.VITE_API_ROOT + "/users/signup";
     const data: UserSignupInfo = {
       username: event.target.username.value,
       email: event.target.email.value,

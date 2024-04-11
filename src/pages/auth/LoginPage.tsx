@@ -15,7 +15,7 @@ export const LoginPage = () => {
   const handleSubmit = async (event: any) => {
     event.preventDefault();
 
-    const url = import.meta.env.VITE_BASE_URL + "/users/login";
+    const url = import.meta.env.VITE_API_ROOT + "/users/login";
     const data: UserLoginInfo = {
       email: event.target.email.value,
       password: event.target.password.value,
