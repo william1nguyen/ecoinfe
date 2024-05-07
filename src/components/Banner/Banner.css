@@ -1,0 +1,15 @@
+.banner {
+    height: 500px;
+    width: 100%;
+    margin-bottom: 50px;
+    min-height: 600px;
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.banner img {
+    height: 100%;
+    width: 100%;      
+}

@@ -14,7 +14,6 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Toaster } from "react-hot-toast";
 import { LoginProvider } from "./contexts/LoginContext";
 import { ProductView } from "./pages/store/ProductView";
-import { Banner } from "./components/Banner/Banner";
 import { Footer } from "./components/Footer/Footer";
 
 const App = () => {
@@ -37,7 +36,6 @@ const App = () => {
           <div className="app-container">
             <HideAppBar />
             <div style={{ padding: "2rem", margin: "0 auto" }} className="content">
-              <Banner />
               <Routes>
                 <Route
                   path="/login"
