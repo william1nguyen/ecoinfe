@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { Alert, Grid, Paper } from "@mui/material";
+import { Alert, Grid, Pagination, Paper } from "@mui/material";
 import { Button } from "@mui/material";
 import { Stack } from "@mui/material";
 import { Product } from "../../type";
@@ -64,43 +64,56 @@ export const ProductsView = () => {
   }, []);
 
   return products ? (
-    <Grid container spacing={2} rowSpacing={5} justifyContent="center">
-      {products.map((product: Product) => (
-        <Grid key={product.id} item>
-          <Paper
-            sx={{
-              p: 2,
-              margin: "auto",
-              width: 300,
-              flexGrow: 1,
-              backgroundColor: (theme) =>
-                theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-            }}
-          >
-            <img
-              className="thumbnail"
-              src={product.imageUploadURL}
-              alt={product.name}
-            />
-            <br />
-            <a href={`/products/${product.id}`}>
-              <strong>{truncate(product.name)}</strong>
-            </a>
-            <hr />
-            <Stack direction="row" justifyContent="space-between">
-              <Button
-                size="small"
-                variant="contained"
-                onClick={() => handleClick(product)}
-              >
-                Add to cart
-              </Button>
-              <h4>${product.price}</h4>
-            </Stack>
-          </Paper>
-        </Grid>
-      ))}
-    </Grid>
+    <>
+      <Grid container spacing={2} rowSpacing={5} justifyContent="center">
+        {products.map((product: Product) => (
+          <Grid key={product.id} item>
+            <Paper
+              sx={{
+                p: 2,
+                margin: "auto",
+                width: 300,
+                flexGrow: 1,
+                backgroundColor: (theme) =>
+                  theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+              }}
+            >
+              <img
+                className="thumbnail"
+                src={product.imageUploadURL}
+                alt={product.name}
+              />
+              <br />
+              <a href={`/products/${product.id}`}>
+                <strong>{truncate(product.name)}</strong>
+              </a>
+              <hr />
+              <Stack direction="row" justifyContent="space-between">
+                <Button
+                  size="small"
+                  variant="contained"
+                  onClick={() => handleClick(product)}
+                >
+                  Add to cart
+                </Button>
+                <h4>${product.price}</h4>
+              </Stack>
+            </Paper>
+          </Grid>
+        ))}
+      </Grid>
+      <Pagination count={100} 
+        color="primary" 
+        size="large"
+        style={{
+          display: "flex", 
+          alignItems: "center", 
+          justifyContent: "center",
+          padding: "10px",
+          marginTop: "20px"
+        }} 
+      />
+    </>
   ) : (
     <Alert severity="error"> Your network is not working !</Alert>
   );
