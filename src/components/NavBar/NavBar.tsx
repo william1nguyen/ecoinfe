@@ -1,21 +1,27 @@
 import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import InputBase from "@mui/material/InputBase";
-import Badge from "@mui/material/Badge";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import CatchingPokemonIcon from "@mui/icons-material/CatchingPokemon";
-import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
-import AppRegistrationRounded from "@mui/icons-material/AppRegistrationRounded";
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Typography,
+  InputBase,
+  Badge,
+  MenuItem,
+  Menu
+} from "@mui/material";
+import {
+  Settings,
+  Logout,
+  AppRegistrationRounded,
+  LoginRounded,
+  CatchingPokemon,
+  ShoppingCart,
+  AccountCircle,
+  Menu as MenuIcon,
+  Search as SearchIcon
+} from "@mui/icons-material";
 import { useCookies } from "react-cookie";
 import { OrderContext } from "../../contexts/OrderContext";
 import { useNavigate } from "react-router-dom";
@@ -120,10 +126,24 @@ export const NavBar = () => {
           navigate("/settings");
           setAnchorEl(null);
         }}
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          gap: "10px"
+        }}
       >
+        <Settings />
         Setting
       </MenuItem>
-      <MenuItem onClick={handleLogout}>Log out</MenuItem>
+      <MenuItem onClick={handleLogout}
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        gap: "10px"
+      }}>
+        <Logout />
+        Log out
+      </MenuItem>
     </Menu>
   );
 
@@ -136,7 +156,7 @@ export const NavBar = () => {
         onClick={() => navigate("/orders/me")}
       >
         <Badge badgeContent={orderItemNumber} color="error">
-          <ShoppingCartIcon />
+          <ShoppingCart />
         </Badge>
       </IconButton>
       <IconButton
@@ -160,8 +180,13 @@ export const NavBar = () => {
         color="inherit"
         aria-label="Login"
         onClick={() => navigate("/login")}
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          gap: "10px"
+        }}
       >
-        <LoginRoundedIcon />
+        <LoginRounded />
         Login
       </IconButton>
       <IconButton
@@ -169,6 +194,11 @@ export const NavBar = () => {
         color="inherit"
         aria-label="Sign up"
         onClick={() => navigate("/signup")}
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          gap: "10px"
+        }}
       >
         <AppRegistrationRounded />
         Sign up
@@ -201,7 +231,7 @@ export const NavBar = () => {
               aria-label="Title"
               onClick={() => navigate("/")}
             >
-              <CatchingPokemonIcon />
+              <CatchingPokemon />
               ECOIN
             </IconButton>
           </Typography>
