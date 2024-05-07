@@ -1,0 +1,39 @@
+.footer {
+    position: relative;
+    width: 100%;
+    bottom: 0;
+    color: white;
+}
+
+#contact-block > h2 {
+    color: white;
+    font-weight: bold;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.footer-block {
+    display: block;
+    text-align: left;
+}
+
+.footer-block > h2 {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: white;
+}
+
+.footer-hr {
+    padding: 20px 0;
+    border: none;
+  
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      right: 0;
+      max-width: 100%;
+      width: 100%;
+      border: 1px solid grey;
+    }
+  }

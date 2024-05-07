@@ -14,6 +14,8 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Toaster } from "react-hot-toast";
 import { LoginProvider } from "./contexts/LoginContext";
 import { ProductView } from "./pages/store/ProductView";
+import { Banner } from "./components/Banner/Banner";
+import { Footer } from "./components/Footer/Footer";
 
 const App = () => {
   useEffect(() => {
@@ -32,31 +34,35 @@ const App = () => {
               },
             }}
           />
-          <HideAppBar />
-          <div style={{ padding: "2rem", margin: "0 auto" }}>
-            <Routes>
-              <Route
-                path="/login"
-                element={<LoadingRoute element={<LoginPage />} />}
-              />
-              <Route
-                path="/signup"
-                element={<LoadingRoute element={<SignupPage />} />}
-              />
-              <Route
-                path="/orders/me"
-                element={<LoadingRoute element={<Cart />} />}
-              />
-              <Route
-                path="/settings"
-                element={<LoadingRoute element={<Settings />} />}
-              />
-              <Route path="/" element={<LoadingRoute element={<Store />} />} />
-              <Route
-                path="/products/:productId"
-                element={<LoadingRoute element={<ProductView />} />}
-              />
-            </Routes>
+          <div className="app-container">
+            <HideAppBar />
+            <div style={{ padding: "2rem", margin: "0 auto" }} className="content">
+              <Banner />
+              <Routes>
+                <Route
+                  path="/login"
+                  element={<LoadingRoute element={<LoginPage />} />}
+                />
+                <Route
+                  path="/signup"
+                  element={<LoadingRoute element={<SignupPage />} />}
+                />
+                <Route
+                  path="/orders/me"
+                  element={<LoadingRoute element={<Cart />} />}
+                />
+                <Route
+                  path="/settings"
+                  element={<LoadingRoute element={<Settings />} />}
+                />
+                <Route path="/" element={<LoadingRoute element={<Store />} />} />
+                <Route
+                  path="/products/:productId"
+                  element={<LoadingRoute element={<ProductView />} />}
+                />
+              </Routes>
+            </div>
+            <Footer />
           </div>
         </OrderProvider>
       </LoginProvider>
