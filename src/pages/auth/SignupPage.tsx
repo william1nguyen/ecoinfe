@@ -71,7 +71,7 @@ export const SignupPage = () => {
           <button id="signup">create</button>
           <p className="message">
             Already registered?
-            <a href="/login">Sign In</a>
+            <a href="/login"> Sign In</a>
           </p>
         </form>
       </div>

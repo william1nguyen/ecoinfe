@@ -4,6 +4,7 @@
     width: 360px;
     padding: 30% 0 0;
     margin: auto;
+    transform: translate(0%, -25%);
 }
 
 .form {

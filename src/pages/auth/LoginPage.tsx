@@ -61,7 +61,7 @@ export const LoginPage = () => {
           <button id="login">login</button>
           <p className="message">
             Not registered?
-            <a href="/signup">Create an account</a>
+            <a href="/signup"> Create an account</a>
           </p>
         </form>
       </div>
