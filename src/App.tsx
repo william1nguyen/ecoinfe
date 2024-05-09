@@ -21,7 +21,7 @@ const App = () => {
   useEffect(() => {
     const favicon = document.querySelector("link[rel~='icon']") as HTMLLinkElement
     if (favicon) {
-      favicon.href = "src/assets/react.svg"
+      favicon.href = "https://github.com/enwcoin/ecoinfe/blob/410f86953d52cdcca4a24a9398abac40efaf8c42/src/assets/react.svg"
     }
     document.title = "ECOIN";
   }, []);
