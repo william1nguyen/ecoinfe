@@ -1,3 +1,4 @@
+import "./ProductView.css";
 import { Button } from "@mui/material";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
@@ -7,7 +8,8 @@ import { OrderContext } from "../../contexts/OrderContext";
 import toast from "react-hot-toast";
 import { Product } from "../../type";
 import { truncate } from "../../utilities/truncate";
-import "./ProductView.css";
+import { MarkdownComponent } from "../../utilities/markdown";
+import { parser } from "../../utilities/parser";
 
 export const ProductView = () => {
   const params = useParams();
@@ -16,7 +18,7 @@ export const ProductView = () => {
   const [price, setPrice] = useState(0);
   const [, setDigital] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState<string[] | null>([]);
   const [instock, setInStock] = useState(true);
   const [updatedBy, setUpdatedBy] = useState("");
   const [cookies, ,] = useCookies(["access-token"]);
@@ -65,13 +67,15 @@ export const ProductView = () => {
       
       const product: any = response["data"]["product"];
 
+      const descriptionList = await parser(product["description"]);
+
       setProduct(product);
       setName(product["name"]);
       setPrice(product["price"]);
       setDigital(product["digital"]);
       setImageUrl(product["imageUploadURL"]);
       setInStock(product["instock"]);
-      setDescription(product["description"]);
+      setDescription(descriptionList);
       setUpdatedBy(product["updatedBy"]);
     };
 
@@ -97,7 +101,7 @@ export const ProductView = () => {
               <hr />
               <div>
                 <h3>Description</h3>
-                <p>{description}</p>
+                <MarkdownComponent markdownContents={description} />
               </div>
             </>
           ) : (
