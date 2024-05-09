@@ -19,6 +19,10 @@ import { WelcomePage } from "./pages/welcome/WelcomPage";
 
 const App = () => {
   useEffect(() => {
+    const favicon = document.querySelector("link[rel~='icon']") as HTMLLinkElement
+    if (favicon) {
+      favicon.href = "src/assets/react.svg"
+    }
     document.title = "ECOIN";
   }, []);
 
