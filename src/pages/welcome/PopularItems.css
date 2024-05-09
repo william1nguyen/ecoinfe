@@ -1,0 +1,36 @@
+@keyframes blink {
+    0% {
+      color: red;
+    }
+    50% {
+      color: blue;
+    }
+    100% {
+      color: red;
+    }
+}
+  
+.week-hot-sale-container {
+    border-radius: 20px;
+    border: 3px solid pink;
+}
+
+.week-hot-sale-container img#flashsale-icon {
+  height: 1em;
+  margin-right: 10px;
+}
+
+.week-hot-sale-container span,
+.week-hot-sale-container h1 {
+    font-weight: bold;
+    color: pink;
+    text-shadow:
+    0 0 4px pink,
+    0 0 4px pink,
+    0 0 4px pink,
+    0 0 4px pink;
+}
+
+.week-hot-sale-container span {
+    animation: blink 2s infinite;
+}
