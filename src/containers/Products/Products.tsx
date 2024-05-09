@@ -8,7 +8,6 @@ import { OrderContext } from "../../contexts/OrderContext";
 import { useCookies } from "react-cookie";
 import { truncate } from "../../utilities/truncate";
 import toast from "react-hot-toast";
-import { Banner } from "../../components/Banner/Banner";
 
 export const ProductsView = () => {
   const [products, setProducts] = useState<Product[] | null>(null);
@@ -66,7 +65,6 @@ export const ProductsView = () => {
 
   return products ? (
     <>
-      <Banner />
       <Grid container spacing={2} rowSpacing={5} justifyContent="center">
         {products.map((product: Product) => (
           <Grid key={product.id} item>

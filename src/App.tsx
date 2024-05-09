@@ -15,6 +15,7 @@ import { Toaster } from "react-hot-toast";
 import { LoginProvider } from "./contexts/LoginContext";
 import { ProductView } from "./pages/store/ProductView";
 import { Footer } from "./components/Footer/Footer";
+import { WelcomePage } from "./pages/welcome/WelcomPage";
 
 const App = () => {
   useEffect(() => {
@@ -53,7 +54,8 @@ const App = () => {
                   path="/settings"
                   element={<LoadingRoute element={<Settings />} />}
                 />
-                <Route path="/" element={<LoadingRoute element={<Store />} />} />
+                <Route path="/" element={<LoadingRoute element={<WelcomePage />} />} />
+                <Route path="/store" element={<LoadingRoute element={<Store />} />} />
                 <Route
                   path="/products/:productId"
                   element={<LoadingRoute element={<ProductView />} />}

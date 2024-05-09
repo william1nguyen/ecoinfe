@@ -209,7 +209,7 @@ export const NavBar = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar style={{display: "flex", justifyContent: "space-between"}}>
           <IconButton
             size="large"
             edge="start"
@@ -244,6 +244,14 @@ export const NavBar = () => {
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
+          <IconButton
+              size="medium"
+              color="inherit"
+              aria-label="Title"
+              onClick={() => navigate("/store")}
+            >
+              Store
+            </IconButton>
           <Box sx={{ flexGrow: 1 }} />
           {isLoggedIn
             ? renderIconWithUserLoggedIn
