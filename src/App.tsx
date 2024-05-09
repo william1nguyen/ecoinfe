@@ -16,12 +16,13 @@ import { LoginProvider } from "./contexts/LoginContext";
 import { ProductView } from "./pages/store/ProductView";
 import { Footer } from "./components/Footer/Footer";
 import { WelcomePage } from "./pages/welcome/WelcomPage";
+import iconUrl from './assets/react.svg';
 
 const App = () => {
   useEffect(() => {
     const favicon = document.querySelector("link[rel~='icon']") as HTMLLinkElement
     if (favicon) {
-      favicon.href = "assets/react.svg"
+      favicon.href = iconUrl;
     }
     document.title = "ECOIN";
   }, []);
