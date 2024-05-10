@@ -14,13 +14,14 @@ import {
 import {
   Settings,
   Logout,
-  AppRegistrationRounded,
   LoginRounded,
   CatchingPokemon,
   ShoppingCart,
   AccountCircle,
   Menu as MenuIcon,
-  Search as SearchIcon
+  Search as SearchIcon,
+  Store,
+  Person
 } from "@mui/icons-material";
 import { useCookies } from "react-cookie";
 import { OrderContext } from "../../contexts/OrderContext";
@@ -37,10 +38,11 @@ const Search = styled("div")(({ theme }) => ({
   },
   marginRight: theme.spacing(2),
   marginLeft: 0,
-  width: "100%",
+  width: "80%",
+  textAlign: "left",
   [theme.breakpoints.up("sm")]: {
     marginLeft: theme.spacing(3),
-    width: "auto",
+    width: "80%",
   },
 }));
 
@@ -186,22 +188,8 @@ export const NavBar = () => {
           gap: "10px"
         }}
       >
-        <LoginRounded />
-        Login
-      </IconButton>
-      <IconButton
-        size="small"
-        color="inherit"
-        aria-label="Sign up"
-        onClick={() => navigate("/signup")}
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          gap: "10px"
-        }}
-      >
-        <AppRegistrationRounded />
-        Sign up
+        <Person />
+        Sign In
       </IconButton>
     </Box>
   );
@@ -250,7 +238,7 @@ export const NavBar = () => {
               aria-label="Title"
               onClick={() => navigate("/store")}
             >
-              Store
+              <Store />
             </IconButton>
           <Box sx={{ flexGrow: 1 }} />
           {isLoggedIn
