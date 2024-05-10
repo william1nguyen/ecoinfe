@@ -14,7 +14,6 @@ import {
 import {
   Settings,
   Logout,
-  LoginRounded,
   CatchingPokemon,
   ShoppingCart,
   AccountCircle,
