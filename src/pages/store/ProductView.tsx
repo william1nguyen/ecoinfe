@@ -18,6 +18,9 @@ export const ProductView = () => {
   const [price, setPrice] = useState(0);
   const [, setDigital] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
+  const [brand, setBrand] = useState<string | null>("");
+  const [categories, setCategories] = useState<string | null>("");
+  const [model, setModel] = useState<string | null>("");
   const [description, setDescription] = useState<string[] | null>([]);
   const [instock, setInStock] = useState(true);
   const [updatedBy, setUpdatedBy] = useState("");
@@ -75,6 +78,9 @@ export const ProductView = () => {
       setDigital(product["digital"]);
       setImageUrl(product["imageUploadURL"]);
       setInStock(product["instock"]);
+      setBrand(product["brand"]);
+      setCategories(product["categories"]);
+      setModel(product["model"]);
       setDescription(descriptionList);
       setUpdatedBy(product["updatedBy"]);
     };
@@ -108,6 +114,9 @@ export const ProductView = () => {
             <></>
           )}
           <hr />
+          <p><b>Brand:</b> <span>{brand}</span></p>
+          <p><b>Categories:</b> <span>{categories}</span></p>
+          <p><b>Models:</b> <span>{model}</span></p>
           {instock ? (
             <p style={{ color: "green" }}>In Stock</p>
           ) : (

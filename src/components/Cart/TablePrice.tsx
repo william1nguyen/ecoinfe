@@ -12,6 +12,7 @@ import { OrderContext } from "../../contexts/OrderContext";
 import { NumberInput } from "../NumberInput/NumberInput";
 import { useCookies } from "react-cookie";
 import axios from "axios";
+import { truncate } from "../../utilities/truncate";
 
 const TAX_RATE = 0.1;
 
@@ -102,7 +103,7 @@ export const TablePrice = () => {
           {orderItems
             ? orderItems.map((orderItem: any) => (
                 <TableRow key={orderItem.id}>
-                  <TableCell>{orderItem.name}</TableCell>
+                  <TableCell>{truncate(orderItem.name, 35)}</TableCell>
                   <TableCell align="right">${orderItem.unit_price}</TableCell>
                   <TableCell align="right" sx={{ maxWidth: 2 }}>
                     <NumberInput

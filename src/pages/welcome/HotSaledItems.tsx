@@ -1,8 +1,8 @@
-import "./PopularItems.css";
-import { ProductsView } from "../../containers/Products/Products";
+import "./HotSaledItems.css";
+import { HotSaledProducts } from "../../containers/Products/HotSaledProducts";
 import FlashSaleIconURL from "../../assets/flashsale_icon.png";
 
-export const PopularItems = () => {
+export const HotSaledItems = () => {
     return (
         <div className="week-hot-sale-container">
             <h1>
@@ -14,7 +14,7 @@ export const PopularItems = () => {
                 WEEKEND HOT 
                 <span> SALE</span>
             </h1>
-            <ProductsView />
+            <HotSaledProducts />
         </div>
     )
 }

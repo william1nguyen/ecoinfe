@@ -1,11 +1,11 @@
 import { Banner } from "../../components/Banner/Banner";
-import { PopularItems } from "./PopularItems";
+import { HotSaledItems } from "./HotSaledItems";
 
 export const WelcomePage = () => {
     return (
         <div>
             <Banner />
-            <PopularItems />
+            <HotSaledItems />
         </div>
     );
 }

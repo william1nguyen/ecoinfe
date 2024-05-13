@@ -9,8 +9,8 @@ import { useCookies } from "react-cookie";
 import { truncate } from "../../utilities/truncate";
 import toast from "react-hot-toast";
 
-export const Products = () => {
-  const pageSize = 15;
+export const HotSaledProducts = () => {
+  const pageSize = 5;
   const [products, setProducts] = useState<Product[] | null>(null);
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -51,7 +51,7 @@ export const Products = () => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const url = import.meta.env.VITE_API_ROOT + `/api/products?page=${currentPage}`;
+        const url = import.meta.env.VITE_API_ROOT + `/api/products?is_hot_saled=true&&page=${currentPage}`;
         const response = await axios({
           method: "GET",
           url: url,
