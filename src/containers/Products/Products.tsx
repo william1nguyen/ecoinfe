@@ -68,9 +68,10 @@ export const Products = () => {
     getProducts();
   }, [currentPage]);
 
-  const handlePageChange = (event: React.ChangeEvent<unknown>, newPage: number) => {
+  const handlePageChange = (event: React.ChangeEvent<unknown>) => {
+    const newPage = parseInt((event.target as HTMLInputElement).innerText);
     setCurrentPage(newPage);
-};
+  };
 
   return products ? (
     <>
