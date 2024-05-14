@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { Alert, Grid, Pagination, Paper } from "@mui/material";
+import { Grid, Pagination, Paper } from "@mui/material";
 import { Button } from "@mui/material";
 import { Stack } from "@mui/material";
 import { Product } from "../../type";
@@ -8,6 +8,7 @@ import { OrderContext } from "../../contexts/OrderContext";
 import { useCookies } from "react-cookie";
 import { truncate } from "../../utilities/truncate";
 import toast from "react-hot-toast";
+import { CircularProgress } from "@mui/material";
 
 export const HotSaledProducts = () => {
   const pageSize = 5;
@@ -127,6 +128,6 @@ export const HotSaledProducts = () => {
       />
     </>
   ) : (
-    <Alert severity="error"> Your network is not working !</Alert>
+    <CircularProgress />
   );
 };

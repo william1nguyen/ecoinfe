@@ -1,6 +1,6 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
-import { Alert, Grid, Pagination, Paper } from "@mui/material";
+import React, { useContext, useEffect, useState } from "react";
+import { Grid, Pagination, Paper } from "@mui/material";
 import { Button } from "@mui/material";
 import { Stack } from "@mui/material";
 import { Product } from "../../type";
@@ -8,8 +8,14 @@ import { OrderContext } from "../../contexts/OrderContext";
 import { useCookies } from "react-cookie";
 import { truncate } from "../../utilities/truncate";
 import toast from "react-hot-toast";
+import { CircularProgress } from "@mui/material";
 
-export const Products = () => {
+interface ProductProps {
+  devices?: string;
+  brand?: string;
+}
+
+export const Products: React.FC<ProductProps> = ({ devices, brand }) => {
   const pageSize = 15;
   const [products, setProducts] = useState<Product[] | null>(null);
   const [pageNumber, setPageNumber] = useState<number>(1);
@@ -51,7 +57,15 @@ export const Products = () => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const url = import.meta.env.VITE_API_ROOT + `/api/products?page=${currentPage}`;
+        let url = import.meta.env.VITE_API_ROOT;
+        console.log(devices);
+        if (devices) {
+          url = url + `/api/products?devices=${devices}&&page=${currentPage}`;
+        } else if (brand) {
+          url = url + `/api/products?brand=${brand}&&page=${currentPage}`;
+        } else {
+          url = url + `/api/products?page=${currentPage}`;
+        }
         const response = await axios({
           method: "GET",
           url: url,
@@ -66,7 +80,7 @@ export const Products = () => {
     };
 
     getProducts();
-  }, [currentPage]);
+  }, [currentPage, devices, brand]);
 
   const handlePageChange = (event: React.ChangeEvent<unknown>) => {
     const newPage = parseInt((event.target as HTMLInputElement).innerText);
@@ -127,6 +141,6 @@ export const Products = () => {
       />
     </>
   ) : (
-    <Alert severity="error"> Your network is not working !</Alert>
+    <CircularProgress />
   );
 };

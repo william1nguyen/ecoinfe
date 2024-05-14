@@ -17,7 +17,6 @@ import {
   CatchingPokemon,
   ShoppingCart,
   AccountCircle,
-  Menu as MenuIcon,
   Search as SearchIcon,
   Store,
   Person
@@ -27,6 +26,7 @@ import { OrderContext } from "../../contexts/OrderContext";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../../contexts/LoginContext";
 import toast from "react-hot-toast";
+import { SideBar } from "../SideBar/SideBar";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -197,15 +197,7 @@ export const NavBar = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar style={{display: "flex", justifyContent: "space-between"}}>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
+          <SideBar />
           <Typography
             variant="h6"
             noWrap

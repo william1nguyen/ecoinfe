@@ -60,6 +60,8 @@ const App = () => {
                   element={<LoadingRoute element={<Settings />} />}
                 />
                 <Route path="/" element={<LoadingRoute element={<WelcomePage />} />} />
+                <Route path="/store/devices/:devices" element={<LoadingRoute element={<Store />} />} />
+                <Route path="/store/brand/:brand" element={<LoadingRoute element={<Store />} />} />
                 <Route path="/store" element={<LoadingRoute element={<Store />} />} />
                 <Route
                   path="/products/:productId"
