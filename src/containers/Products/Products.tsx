@@ -9,6 +9,7 @@ import { useCookies } from "react-cookie";
 import { truncate } from "../../utilities/truncate";
 import toast from "react-hot-toast";
 import { CircularProgress } from "@mui/material";
+import { SearchContext } from "../../contexts/SearchContext";
 
 interface ProductProps {
   devices?: string;
@@ -17,6 +18,7 @@ interface ProductProps {
 
 export const Products: React.FC<ProductProps> = ({ devices, brand }) => {
   const pageSize = 15;
+  const { searchParams }: any = useContext(SearchContext);
   const [products, setProducts] = useState<Product[] | null>(null);
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -60,11 +62,11 @@ export const Products: React.FC<ProductProps> = ({ devices, brand }) => {
         let url = import.meta.env.VITE_API_ROOT;
         console.log(devices);
         if (devices) {
-          url = url + `/api/products?devices=${devices}&&page=${currentPage}`;
+          url = url + `/api/products?devices=${devices}&&page=${currentPage}&&name=${searchParams}`;
         } else if (brand) {
-          url = url + `/api/products?brand=${brand}&&page=${currentPage}`;
+          url = url + `/api/products?brand=${brand}&&page=${currentPage}&&name=${searchParams}`;
         } else {
-          url = url + `/api/products?page=${currentPage}`;
+          url = url + `/api/products?page=${currentPage}&&name=${searchParams}`;
         }
         const response = await axios({
           method: "GET",
@@ -80,7 +82,7 @@ export const Products: React.FC<ProductProps> = ({ devices, brand }) => {
     };
 
     getProducts();
-  }, [currentPage, devices, brand]);
+  }, [currentPage, devices, brand, searchParams]);
 
   const handlePageChange = (event: React.ChangeEvent<unknown>) => {
     const newPage = parseInt((event.target as HTMLInputElement).innerText);

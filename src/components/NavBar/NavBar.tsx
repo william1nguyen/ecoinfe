@@ -27,6 +27,7 @@ import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../../contexts/LoginContext";
 import toast from "react-hot-toast";
 import { SideBar } from "../SideBar/SideBar";
+import { SearchContext } from "../../contexts/SearchContext";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -75,6 +76,7 @@ export const NavBar = () => {
     "access-token",
     "isLoggedIn",
   ]);
+  const { setSearchParams }: any = React.useContext(SearchContext);
   const { isLoggedIn, setIsLoggedIn }: any = React.useContext(LoginContext);
   const { orderItems }: any = React.useContext(OrderContext);
   const [orderItemNumber, setOrderItemNumber]: any = React.useState<
@@ -193,6 +195,10 @@ export const NavBar = () => {
     </Box>
   );
 
+  const handleInputChanged = (event: any) => {
+    setSearchParams(event.target.value);
+  }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -221,6 +227,7 @@ export const NavBar = () => {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
+              onChange={handleInputChanged}
             />
           </Search>
           <IconButton

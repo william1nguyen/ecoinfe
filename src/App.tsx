@@ -17,6 +17,7 @@ import { ProductView } from "./pages/store/ProductView";
 import { Footer } from "./components/Footer/Footer";
 import { WelcomePage } from "./pages/welcome/WelcomPage";
 import iconUrl from './assets/react.svg';
+import { SearchProvider } from "./contexts/SearchContext";
 
 const App = () => {
   useEffect(() => {
@@ -31,46 +32,48 @@ const App = () => {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <LoginProvider>
         <OrderProvider>
-          <Toaster
-            toastOptions={{
-              style: {
-                background: "rgb(51, 65, 85)",
-                color: "#fff",
-              },
-            }}
-          />
-          <div className="app-container">
-            <HideAppBar />
-            <div style={{ padding: "2rem", margin: "0 auto" }} className="content">
-              <Routes>
-                <Route
-                  path="/login"
-                  element={<LoadingRoute element={<LoginPage />} />}
-                />
-                <Route
-                  path="/signup"
-                  element={<LoadingRoute element={<SignupPage />} />}
-                />
-                <Route
-                  path="/orders/me"
-                  element={<LoadingRoute element={<Cart />} />}
-                />
-                <Route
-                  path="/settings"
-                  element={<LoadingRoute element={<Settings />} />}
-                />
-                <Route path="/" element={<LoadingRoute element={<WelcomePage />} />} />
-                <Route path="/store/devices/:devices" element={<LoadingRoute element={<Store />} />} />
-                <Route path="/store/brand/:brand" element={<LoadingRoute element={<Store />} />} />
-                <Route path="/store" element={<LoadingRoute element={<Store />} />} />
-                <Route
-                  path="/products/:productId"
-                  element={<LoadingRoute element={<ProductView />} />}
-                />
-              </Routes>
+          <SearchProvider>
+            <Toaster
+              toastOptions={{
+                style: {
+                  background: "rgb(51, 65, 85)",
+                  color: "#fff",
+                },
+              }}
+            />
+            <div className="app-container">
+              <HideAppBar />
+              <div style={{ padding: "2rem", margin: "0 auto" }} className="content">
+                <Routes>
+                  <Route
+                    path="/login"
+                    element={<LoadingRoute element={<LoginPage />} />}
+                  />
+                  <Route
+                    path="/signup"
+                    element={<LoadingRoute element={<SignupPage />} />}
+                  />
+                  <Route
+                    path="/orders/me"
+                    element={<LoadingRoute element={<Cart />} />}
+                  />
+                  <Route
+                    path="/settings"
+                    element={<LoadingRoute element={<Settings />} />}
+                  />
+                  <Route path="/" element={<LoadingRoute element={<WelcomePage />} />} />
+                  <Route path="/store/devices/:devices" element={<LoadingRoute element={<Store />} />} />
+                  <Route path="/store/brand/:brand" element={<LoadingRoute element={<Store />} />} />
+                  <Route path="/store" element={<LoadingRoute element={<Store />} />} />
+                  <Route
+                    path="/products/:productId"
+                    element={<LoadingRoute element={<ProductView />} />}
+                  />
+                </Routes>
+              </div>
+              <Footer />
             </div>
-            <Footer />
-          </div>
+          </SearchProvider>
         </OrderProvider>
       </LoginProvider>
     </LocalizationProvider>
