@@ -22,7 +22,7 @@ jobs:
           password: ${{ secrets.GH_TOKEN }}
 
       - name: Preset Image Name
-        run: echo "IMAGE_URL=$(echo ghcr.io/natalieconan/${{ github.event.repository.name }}:$(echo ${{ github.sha }} | cut -c1-7) | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+        run: echo "IMAGE_URL=$(echo ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:$(echo ${{ github.sha }} | cut -c1-7) | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
       - name: Print Base URL
         run: echo "VITE_API_ROOT=${{ vars.VITE_API_ROOT }}"
@@ -47,7 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Preset Image Name
-        run: echo "IMAGE_URL=$(echo ghcr.io/natalieconan/${{ github.event.repository.name }}:$(echo ${{ github.sha }} | cut -c1-7) | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+        run: echo "IMAGE_URL=$(echo ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:$(echo ${{ github.sha }} | cut -c1-7) | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
       - name: Deploy Image to CapRrover
         uses: caprover/deploy-from-github@v1.1.2
