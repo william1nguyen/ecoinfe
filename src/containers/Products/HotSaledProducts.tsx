@@ -81,9 +81,9 @@ export const HotSaledProducts = () => {
           <Grid key={product.id} item>
             <Paper
               sx={{
-                p: 2,
+                p: 1,
                 margin: "auto",
-                width: 300,
+                width: 250,
                 flexGrow: 1,
                 backgroundColor: (theme) =>
                   theme.palette.mode === "dark" ? "#1A2027" : "#fff",

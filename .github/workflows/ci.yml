@@ -40,7 +40,8 @@ jobs:
           build-args: |
             VITE_API_ROOT=${{ vars.VITE_API_ROOT }}
             VITE_STRIPE_PK=${{ vars.VITE_STRIPE_PK }}
-
+            VITE_FLOWISE_CHATFLOW_ID=${{ vars.VITE_FLOWISE_CHATFLOW_ID }}
+            VITE_FLOWISE_API_HOST=${{ vars.VITE_FLOWISE_API_HOST }}
 
   deploy:
     needs: build

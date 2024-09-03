@@ -36,3 +36,16 @@ export default {
 ### Errors
 
 -  `MainRoute` component replace normal `React Route` only works on `react-router-dom@v5`
+
+### New features
+
+#### NOVA AI Assistant
+
+- Bubble chat
+![](src/assets/new_features.png)
+
+- Popup Apperance
+![](src/assets/bubblechat.png)
+
+- ChatModel : Google Gemini
+- Tools : (LLM Platform)Flowise, (Vector Database) Pinecone, ...

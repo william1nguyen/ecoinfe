@@ -18,6 +18,7 @@ import { Footer } from "./components/Footer/Footer";
 import { WelcomePage } from "./pages/welcome/WelcomPage";
 import iconUrl from './assets/react.svg';
 import { SearchProvider } from "./contexts/SearchContext";
+import { BubbleChat } from "flowise-embed-react";
 
 const App = () => {
   useEffect(() => {
@@ -70,6 +71,7 @@ const App = () => {
                     element={<LoadingRoute element={<ProductView />} />}
                   />
                 </Routes>
+                <BubbleChat chatflowid={import.meta.env.VITE_FLOWISE_CHATFLOW_ID} apiHost={import.meta.env.VITE_FLOWISE_API_HOST} />
               </div>
               <Footer />
             </div>
