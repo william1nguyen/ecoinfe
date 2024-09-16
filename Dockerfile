@@ -32,7 +32,7 @@ COPY --from=builder /app/build /usr/share/nginx/html
 # Copy the custom nginx configuration file
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 80
+EXPOSE 443
 
 # Start NGINX
 CMD ["nginx", "-g", "daemon off;"]
